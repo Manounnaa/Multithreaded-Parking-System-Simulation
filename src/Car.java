@@ -1,8 +1,8 @@
-public class Car extends Thread{
-    int car_id;
-    int arrival_time;
-    int parking_duration;
-    String gate_id;
+public class Car extends Thread {
+    private final int car_id;
+    private final int arrival_time;
+    private final int parking_duration;
+    private final String gate_id;
     private final ParkingLot parkingLot;
 
     public Car(int carId, int arrivalTime, int parkingDuration, String gateId, ParkingLot parkingLot) {
@@ -20,13 +20,17 @@ public class Car extends Thread{
         return gate_id;
     }
     @Override
-    void run() throws InterruptedException{
-        Thread.sleep(arrival_time);
-        parkingLot.carEnter(this);
-        Thread.sleep(parking_duration);
-        parkingLot.carExit(this);
-
+    public void run() {  // Set run() method to public to match the superclass method visibility
+        try {
+            Thread.sleep(arrival_time);
+            parkingLot.carEnter(this);
+            Thread.sleep(parking_duration);
+            parkingLot.carExit(this);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
+
     @Override
     public String toString() {
         return "Vehicle [Gate: " + gate_id +
