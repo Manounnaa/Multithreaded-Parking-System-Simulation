@@ -8,9 +8,7 @@ public class ParkingVehicle {
             this.entryGate = entryGate;
             this.vehicleId = vehicleId;
             this.arrivalTimeUnits = arrivalTimeUnits;
-            this.parkingDurationUnits = parkingDurationUnits;
-        }
-
+            this.parkingDurationUnits = parkingDurationUnits;}
         //toString : debugging and logging vehicleinfo
         @Override
         public String toString() {

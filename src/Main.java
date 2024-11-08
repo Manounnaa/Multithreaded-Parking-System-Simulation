@@ -1,8 +1,7 @@
 import java.util.List;
 public class Main {
     public static void main(String[] args) {
-                String inputFilePath = "parking_data.txt";  // Replace with the path to your input file
-                // Load vehicle data from input file
+                String inputFilePath = "parking_data.txt";
                 List<ParkingVehicle> parkingVehicles = ParkingDataLoader.loadVehicleData(inputFilePath);
                 // Validate parsed vehicle data before processing
                 if (DataValidator.checkVehicleData(parkingVehicles)) {
