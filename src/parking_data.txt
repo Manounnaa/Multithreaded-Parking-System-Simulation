@@ -1,0 +1,6 @@
+Gate: 1,ID: 0, Arrival Time: 0, Parking Duration: 3
+Gate: 1,ID: 0, Arrival Time: 0, Parking Duration: 3
+Gate: 1,ID: 0, Arrival Time: 0, Parking Duration: 3
+Gate: 1,ID: 0, Arrival Time: 0, Parking Duration: 3
+Gate: 1,ID: 0, Arrival Time: 0, Parking Duration: 3
+Gate: 1,ID: 0, Arrival Time: 0, Parking Duration: 3
