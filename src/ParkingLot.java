@@ -17,7 +17,7 @@ public class ParkingLot {
         try {
             occupiedSpots++;
             totalCarsServed++;
-            System.out.println("Car " + car.getCarId() + " entered the parking lot.");
+            System.out.println("Car " + car.getCarId() + " entered the parking lot ");
         }
         finally {
         statusLock.unlock();

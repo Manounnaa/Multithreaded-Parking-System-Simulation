@@ -41,10 +41,10 @@ public class Car extends Thread {
 
     @Override
     public String toString() { //toString : debugging and logging vehicleinfo
-        return "Vehicle [Gate: " + gate_id +
-                ", ID: " + car_id +
-                ", Arrival Time: " + arrival_time +
-                ", Parking Duration: " + parking_duration + "]";
+        return "Vehicle [Gate " + gate_id +
+                ", Car " + car_id +
+                ", Arrive " + arrival_time +
+                ", Parks " + parking_duration + "]";
     }
 }
 
