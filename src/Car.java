@@ -1,6 +1,6 @@
 public class Car extends Thread {
     private final int car_id;
-    private final int arrival_time;
+   private final int arrival_time;
     private final int parking_duration;
     private final String gate_id;
     private final ParkingLot parkingLot;
@@ -14,6 +14,14 @@ public class Car extends Thread {
     }
     public int getCarId() {
         return car_id;
+    }
+
+    public int getarrival_time() {
+        return arrival_time;
+    }
+
+    public int getparking_duration() {
+        return parking_duration;
     }
 
     public String getGateId() {
@@ -32,10 +40,14 @@ public class Car extends Thread {
     }
 
     @Override
-    public String toString() {
+    public String toString() { //toString : debugging and logging vehicleinfo
         return "Vehicle [Gate: " + gate_id +
                 ", ID: " + car_id +
                 ", Arrival Time: " + arrival_time +
                 ", Parking Duration: " + parking_duration + "]";
     }
 }
+
+
+
+
