@@ -28,16 +28,19 @@ public class Car extends Thread {
         return gate_id;
     }
     @Override
-    public void run() {  // Set run() method to public to match the superclass method visibility
+
+    public void run() {
         try {
-            Thread.sleep(arrival_time);
-            parkingLot.carEnter(this);
-            Thread.sleep(parking_duration);
-            parkingLot.carExit(this);
+            // Log the car arrival with the given arrival time
+            Thread.sleep(arrival_time); // Wait for the arrival time
+            parkingLot.carEnter(this); // Car enters the parking lot
+            Thread.sleep(parking_duration); // Wait for the parking duration
+            parkingLot.carExit(this); // Car exits the parking lot
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
+
 
     @Override
     public String toString() { //toString : debugging and logging vehicleinfo

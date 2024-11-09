@@ -17,7 +17,7 @@ public class ParkingLot {
         try {
             occupiedSpots++;
             totalCarsServed++;
-            System.out.println("Car " + car.getCarId() + " entered the parking lot ");
+            System.out.println("Car " + car.getCarId() + " entered the parking lot at " + car.getarrival_time() + " with " + car.getparking_duration() + " parking duration.");
         }
         finally {
         statusLock.unlock();
@@ -28,24 +28,22 @@ public class ParkingLot {
         statusLock.lock();
         try {
             occupiedSpots--;
-            System.out.println("Car " + car.getCarId() + " exited the parking lot.");
-        }
-        finally {
+            System.out.println("Car " + car.getCarId() + " exited the parking lot after " + car.getparking_duration() + " minutes.");
+        } finally {
             statusLock.unlock();
         }
         parkingSemaphore.release();
     }
 
-    public static void updateStatus() {
-        statusLock.lock();
-        try {
-            System.out.println("Current Cars in Parking: " + occupiedSpots);
-            System.out.println("Total Cars Served: " + totalCarsServed);
-        } finally {
-            statusLock.unlock();
+        public static void updateStatus () {
+            statusLock.lock();
+            try {
+                System.out.println("Current Cars in Parking: " + occupiedSpots);
+                System.out.println("Total Cars Served: " + totalCarsServed);
+            } finally {
+                statusLock.unlock();
+            }
         }
+
+
     }
-
-
-
-}
