@@ -1,6 +1,6 @@
 public class Car extends Thread {
     private final int car_id;
-   private final int arrival_time;
+    private final int arrival_time;
     private final int parking_duration;
     private final String gate_id;
     private final ParkingLot parkingLot;
@@ -12,6 +12,7 @@ public class Car extends Thread {
         this.gate_id = gateId;
         this.parkingLot = parkingLot;
     }
+
     public int getCarId() {
         return car_id;
     }
@@ -27,30 +28,28 @@ public class Car extends Thread {
     public String getGateId() {
         return gate_id;
     }
-    @Override
 
+    @Override
     public void run() {
         try {
-            // Log the car arrival with the given arrival time
-            Thread.sleep(arrival_time); // Wait for the arrival time
-            parkingLot.carEnter(this); // Car enters the parking lot
-            Thread.sleep(parking_duration); // Wait for the parking duration
-            parkingLot.carExit(this); // Car exits the parking lot
+            // Wait for arrival time
+            Thread.sleep(arrival_time);
+            // Log arrival
+            parkingLot.carEnter(this);
+            // Wait for parking duration
+            Thread.sleep(parking_duration);
+            // Log exit
+            parkingLot.carExit(this);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
 
-
     @Override
-    public String toString() { //toString : debugging and logging vehicleinfo
+    public String toString() {
         return "Vehicle [Gate " + gate_id +
                 ", Car " + car_id +
                 ", Arrive " + arrival_time +
                 ", Parks " + parking_duration + "]";
     }
 }
-
-
-
-

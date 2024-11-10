@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingDataLoader {
-    public static List<Car> loadVehicleData(String filePath,ParkingLot parkingLot) {
+    public static List<Car> loadVehicleData(String filePath, ParkingLot parkingLot) {
         List<Car> vehicleList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String currentLine;
