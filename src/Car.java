@@ -33,11 +33,11 @@ public class Car extends Thread {
     public void run() {
         try {
             // Wait for arrival time
-            Thread.sleep(arrival_time);
+            Thread.sleep(arrival_time * 1000L);
             // Log arrival
             parkingLot.carEnter(this);
             // Wait for parking duration
-            Thread.sleep(parking_duration);
+            Thread.sleep(parking_duration * 1000L);
             // Log exit
             parkingLot.carExit(this);
         } catch (InterruptedException e) {
