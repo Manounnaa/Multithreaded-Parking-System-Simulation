@@ -11,7 +11,7 @@ public class ParkingLot {
 
     // To track how many cars each gate has served
     private static Map<String, Integer> gateCarCount = new HashMap<>();
-    private static Semaphore parkingSemaphore = new Semaphore(totalSpots); // Semaphore to manage spot availability
+    private static semaphore parkingSemaphore = new semaphore(totalSpots); // Semaphore to manage spot availability
     private static Lock statusLock = new ReentrantLock(); // Lock to manage status updates
 
     public static void carEnter(Car car) throws InterruptedException {
@@ -25,8 +25,8 @@ public class ParkingLot {
             // Increment the car count for the respective gate
             gateCarCount.put(car.getGateId(), gateCarCount.getOrDefault(car.getGateId(), 0) + 1);
 
-            System.out.println("Car " + car.getCarId() + " from Gate " + car.getGateId() + " arrived at time " + car.getarrival_time());
-            System.out.println("Car " + car.getCarId() + " from Gate " + car.getGateId() + " parked. (Parking Status: " + occupiedSpots + " spots occupied)");
+            System.out.println("Car " + car.getCarId() + " from " + car.getGateId() + " arrived at time " + car.getarrival_time());
+            System.out.println("Car " + car.getCarId() + " from " + car.getGateId() + " parked. (Parking Status: " + occupiedSpots + " spots occupied)");
         } finally {
             statusLock.unlock();
         }
@@ -36,7 +36,7 @@ public class ParkingLot {
         statusLock.lock();
         try {
             occupiedSpots--;
-            System.out.println("Car " + car.getCarId() + " from Gate " + car.getGateId() + " left after " + car.getparking_duration() + " units of time. (Parking Status: " + occupiedSpots + " spots occupied)");
+            System.out.println("Car " + car.getCarId() + " from " + car.getGateId() + " left after " + car.getparking_duration() + " units of time. (Parking Status: " + occupiedSpots + " spots occupied)");
         } finally {
             statusLock.unlock();
         }
@@ -52,7 +52,7 @@ public class ParkingLot {
             // Print the details of cars served by each gate
             System.out.println("Details:");
             for (Map.Entry<String, Integer> entry : gateCarCount.entrySet()) {
-                System.out.println("- Gate " + entry.getKey() + " served " + entry.getValue() + " cars.");
+                System.out.println("- " + entry.getKey() + " served " + entry.getValue() + " cars.");
             }
         } finally {
             statusLock.unlock();
