@@ -2,27 +2,36 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String inputFilePath = "C:\\Users\\WIN10\\Downloads\\Multithreaded-Parking-System-Simulation\\src\\parking_data.txt";
-        ParkingLot sharedParkingLot = new ParkingLot(); // Single shared instance
-        List<Car> Cars = ParkingDataLoader.loadVehicleData(inputFilePath, sharedParkingLot);
+        // Path to the input file
+        String inputFilePath = "src/test9.txt";
+
+        // Create a single shared ParkingLot instance
+        ParkingLot sharedParkingLot = new ParkingLot();
+
+        // Load vehicle data from the input file
+        List<Car> cars = ParkingDataLoader.loadVehicleData(inputFilePath, sharedParkingLot);
 
         // Validate parsed vehicle data before processing
-        if (DataValidator.checkVehicleData(Cars)) {
+        if (cars != null && DataValidator.checkVehicleData(cars)) {
             System.out.println("Validation Complete: All vehicle data is correct!");
-            for (Car car : Cars) {
-                new Thread(car).start();
+
+            // Start threads for each car
+            for (Car car : cars) {
+                car.start(); // Start the thread associated with each Car
             }
 
-            // Simulate waiting for the threads to finish (you can adjust this depending on the simulation time)
-            try {
-                // Wait enough time to allow all cars to arrive and leave
-                Thread.sleep(5000);  // Adjust this time based on the actual time required for your simulation
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+            // Wait for all car threads to complete
+            for (Car car : cars) {
+                try {
+                    car.join(); // Ensure each thread finishes before proceeding
+                } catch (InterruptedException e) {
+                    System.err.println("Main thread interrupted while waiting for car threads to finish.");
+                    Thread.currentThread().interrupt();
+                }
             }
 
-            // Final report after all cars have parked and left
-            sharedParkingLot.updateStatus();  // Print the total cars served, current parking status, and details for each gate
+            // Final report after all cars have parked and exited
+            sharedParkingLot.updateStatus(); // Print total cars served, parking status, and gate details
         } else {
             System.out.println("Error: Vehicle data validation failed!");
         }
